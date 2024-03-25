@@ -44,7 +44,7 @@ public class StandAlone {
 		List<WebElement> fromCart=	driver.findElements(By.cssSelector(".cartSection h3"));
 		Boolean a=	fromCart.stream().anyMatch(Cart->Cart.getText().equals("ZARA COAT 3"));
 		Assert.assertTrue(a);
-        System.out.println(w);
+        System.out.println(w+"yes");
 		driver.findElement(By.cssSelector(".totalRow button")).click();
 		
 		Actions mouse = new Actions(driver);

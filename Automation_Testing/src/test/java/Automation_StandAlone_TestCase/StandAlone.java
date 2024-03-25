@@ -1,7 +1,11 @@
 package Automation_StandAlone_TestCase;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
+import java.util.Properties;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,7 +20,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class StandAlone {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 
 		String productName = "ZARA COAT 3";
@@ -24,7 +28,12 @@ public class StandAlone {
 		WebDriver driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.manage().window().maximize();
-		driver.get("https://rahulshettyacademy.com/client");	
+		//calling object repo for helping me with the url
+		Properties p = new Properties();
+		FileInputStream obj=new FileInputStream("./Config.properties");
+		p.load(obj);
+	//	String h=p.getProperty("baseurl");
+		driver.get(p.getProperty("baseurl"));	
 		driver.findElement(By.id("userEmail")).sendKeys("deepranjal@gmail.com");
 		driver.findElement(By.id("userPassword")).sendKeys("Pranjal@123");
 		driver.findElement(By.id("login")).click();
